@@ -33,6 +33,7 @@
 package org.scijava.script;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
@@ -116,6 +117,18 @@ public class AdaptedScriptLanguage extends AbstractScriptLanguage {
 	@Override
 	public Object getParameter(final String key) {
 		return base.getParameter(key);
+	}
+
+	@Override
+	public String decodeModuleCall(final String obj, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String decodeUnknownVariable(final String variable)
+	{
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

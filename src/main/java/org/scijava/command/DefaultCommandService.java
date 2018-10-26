@@ -154,21 +154,21 @@ public class DefaultCommandService extends AbstractPTService<Command> implements
 	public Future<CommandModule> run(final String className,
 		final boolean process, final Object... inputs)
 	{
-		return run(getOrCreate(className), process, inputs);
+		return run(getOrCreate(className, process), process, inputs);
 	}
 
 	@Override
 	public Future<CommandModule> run(final String className,
 		final boolean process, final Map<String, Object> inputMap)
 	{
-		return run(getOrCreate(className), process, inputMap);
+		return run(getOrCreate(className, process), process, inputMap);
 	}
 
 	@Override
 	public <C extends Command> Future<CommandModule> run(
 		final Class<C> commandClass, final boolean process, final Object... inputs)
 	{
-		return run(getOrCreate(commandClass), process, inputs);
+		return run(getOrCreate(commandClass, process), process, inputs);
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class DefaultCommandService extends AbstractPTService<Command> implements
 		final Class<C> commandClass, final boolean process,
 		final Map<String, Object> inputMap)
 	{
-		return run(getOrCreate(commandClass), process, inputMap);
+		return run(getOrCreate(commandClass, process), process, inputMap);
 	}
 
 	@Override
@@ -235,9 +235,12 @@ public class DefaultCommandService extends AbstractPTService<Command> implements
 	 * Gets a {@link CommandInfo} for the given class name, creating a new one if
 	 * none are registered with the service.
 	 */
-	private CommandInfo getOrCreate(final String className) {
+	private CommandInfo getOrCreate(final String className, boolean process) {
 		final CommandInfo command = getCommand(className);
-		if (command != null) return command;
+		if (command != null) {
+			command.setProcess(process);
+			return command;
+		}
 		return new CommandInfo(className);
 	}
 
@@ -246,10 +249,13 @@ public class DefaultCommandService extends AbstractPTService<Command> implements
 	 * none are registered with the service.
 	 */
 	private <C extends Command> CommandInfo getOrCreate(
-		final Class<C> commandClass)
+		final Class<C> commandClass, boolean process)
 	{
 		final CommandInfo command = getCommand(commandClass);
-		if (command != null) return command;
+		if (command != null) {
+			command.setProcess(process);
+			return command;
+		}
 		return new CommandInfo(commandClass);
 	}
 

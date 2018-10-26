@@ -34,6 +34,7 @@ package org.scijava.script;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
@@ -95,6 +96,16 @@ public interface ScriptLanguage extends ScriptEngineFactory, RichPlugin,
 	 */
 	default AutoCompleter getAutoCompleter() {
 		return new DefaultAutoCompleter(this);
+	}
+
+	default String decodeModuleCall(final String obj, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	default String decodeUnknownVariable(final String variable)
+	{
+		throw new UnsupportedOperationException();
 	}
 
 	// -- ScriptEngineFactory methods --

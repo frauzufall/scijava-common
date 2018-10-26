@@ -33,6 +33,7 @@
 package org.scijava.module;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 import org.scijava.AbstractContextual;
@@ -84,6 +85,8 @@ public class ModuleRunner extends AbstractContextual implements
 		final List<? extends ModulePreprocessor> pre,
 		final List<? extends ModulePostprocessor> post)
 	{
+		Map<String, Object> _inputs = module.getInputs();
+
 		setContext(context);
 		this.module = module;
 		this.pre = pre;

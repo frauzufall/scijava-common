@@ -110,6 +110,9 @@ public class CommandInfo extends PluginInfo<Command> implements ModuleInfo {
 	/** Ordered list of output items. */
 	private final List<ModuleItem<?>> outputList = new ArrayList<>();
 
+	/** Variable indicating whether the command is executed with pre- and postprocessing steps. */
+	private boolean process;
+
 	// -- Constructors --
 
 	/**
@@ -531,4 +534,13 @@ public class CommandInfo extends PluginInfo<Command> implements ModuleInfo {
 		return typedItem;
 	}
 
+	@Override
+	public void setProcess(boolean process) {
+		this.process = process;
+	}
+
+	@Override
+	public boolean getProcess() {
+		return process;
+	}
 }

@@ -241,4 +241,11 @@ public interface ModuleInfo extends UIDetails, Validated, Identifiable,
 			return null;
 		}
 	}
+
+	default void setProcess(boolean process) {
+	}
+
+	default boolean getProcess() {
+		return true;
+	}
 }

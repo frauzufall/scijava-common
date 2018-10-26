@@ -43,12 +43,14 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.scijava.MenuPath;
 import org.scijava.Priority;
 import org.scijava.convert.ConvertService;
 import org.scijava.event.EventService;
 import org.scijava.input.Accelerator;
 import org.scijava.log.LogService;
+import org.scijava.module.event.ModuleInputConvertedEvent;
 import org.scijava.module.event.ModulesAddedEvent;
 import org.scijava.module.event.ModulesRemovedEvent;
 import org.scijava.module.process.ModulePostprocessor;
@@ -465,6 +467,7 @@ public class DefaultModuleService extends AbstractService implements
 					continue;
 				}
 			}
+			eventService.publish(new ModuleInputConvertedEvent(new DefaultMutableModuleInfo(), value, converted));
 			module.setInput(name, converted);
 			module.resolveInput(name);
 		}
