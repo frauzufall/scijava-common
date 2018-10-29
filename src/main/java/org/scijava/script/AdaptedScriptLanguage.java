@@ -120,13 +120,16 @@ public class AdaptedScriptLanguage extends AbstractScriptLanguage {
 	}
 
 	@Override
-	public String decodeModuleCall(final String obj, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
+	public String encodeInitializers() {return ""; }
+
+	@Override
+	public String encodeModuleCall(final String obj, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
 	{
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public String decodeUnknownVariable(final String variable)
+	public String encodeUnknownVariable(final String variable)
 	{
 		throw new UnsupportedOperationException();
 	}

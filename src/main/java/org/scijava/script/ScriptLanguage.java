@@ -98,12 +98,14 @@ public interface ScriptLanguage extends ScriptEngineFactory, RichPlugin,
 		return new DefaultAutoCompleter(this);
 	}
 
-	default String decodeModuleCall(final String obj, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
+	default String encodeInitializers() {return ""; }
+
+	default String encodeModuleCall(final String obj, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
 	{
 		throw new UnsupportedOperationException();
 	}
 
-	default String decodeUnknownVariable(final String variable)
+	default String encodeUnknownVariable(final String variable)
 	{
 		throw new UnsupportedOperationException();
 	}
@@ -172,4 +174,5 @@ public interface ScriptLanguage extends ScriptEngineFactory, RichPlugin,
 	default String getEngineVersion() {
 		return VersionUtils.getVersion(getClass());
 	}
+
 }

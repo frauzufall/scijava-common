@@ -467,7 +467,9 @@ public class DefaultModuleService extends AbstractService implements
 					continue;
 				}
 			}
-			eventService.publish(new ModuleInputConvertedEvent(new DefaultMutableModuleInfo(), value, converted));
+			if(!value.equals(converted)) {
+				eventService.publish(new ModuleInputConvertedEvent(new DefaultMutableModuleInfo(), value, converted));
+			}
 			module.setInput(name, converted);
 			module.resolveInput(name);
 		}
