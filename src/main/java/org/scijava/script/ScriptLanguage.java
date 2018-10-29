@@ -98,14 +98,21 @@ public interface ScriptLanguage extends ScriptEngineFactory, RichPlugin,
 		return new DefaultAutoCompleter(this);
 	}
 
-	default String encodeInitializers() {return ""; }
+	default void registerParameter(Class objectClass, String objectVariableName) {}
 
-	default String encodeModuleCall(final String obj, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
+	default String encodeParameter(Class objectClass) {return ""; }
+
+	default String encodeModuleCall(final String moduleName, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
 	{
 		throw new UnsupportedOperationException();
 	}
 
 	default String encodeUnknownVariable(final String variable)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	default String encodeVariableFromService(String variableName, String serviceVariableName, final String serviceMethodName)
 	{
 		throw new UnsupportedOperationException();
 	}

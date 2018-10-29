@@ -54,12 +54,6 @@ public class ModuleInputConvertedEvent extends ModulesListEvent {
 		this.dst = dst;
 	}
 
-	public ModuleInputConvertedEvent(final Collection<? extends ModuleInfo> c, Object src, Object dst) {
-		super(c);
-		this.src = src;
-		this.dst = dst;
-	}
-
 	public Object getSrc() {
 		return src;
 	}
