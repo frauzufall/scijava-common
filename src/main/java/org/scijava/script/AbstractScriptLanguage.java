@@ -37,6 +37,8 @@ import javax.script.ScriptEngineFactory;
 import org.scijava.plugin.AbstractRichPlugin;
 import org.scijava.plugin.PluginInfo;
 
+import java.util.Map;
+
 /**
  * Abstract superclass for {@link ScriptLanguage} implementations.
  * <p>
@@ -83,6 +85,30 @@ public abstract class AbstractScriptLanguage extends AbstractRichPlugin
 		// replace underscores with spaces
 		className = className.replace('_', ' ');
 		return className;
+	}
+
+	@Override
+	public void registerParameter(Class objectClass, String objectVariableName) {}
+
+	@Override
+	public String encodeParameter(Class objectClass) {return ""; }
+
+	@Override
+	public String encodeModuleCall(final String moduleName, boolean process, Map<String, Object> inputs, Map<String, String> outputs, Map<Object, String> variables)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String encodeUnknownVariable(final String variable)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String encodeVariableFromService(String variableName, String serviceVariableName, final String serviceMethodName)
+	{
+		throw new UnsupportedOperationException();
 	}
 
 }
